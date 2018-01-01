@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+  nginx:
+    build: ./nginx/
+    ports:
+    - "80:80"
+    - "443:443"
+    environment:
+    - EDGE=10.0.0.200
+    volumes:
+    - "/tmp/data:/data"
+    restart: always
+    ulimits:
+      nofile:
+        soft: 1048576
+        hard: 1048576
+

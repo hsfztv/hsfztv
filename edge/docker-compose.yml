@@ -1,0 +1,59 @@
+version: '2'
+
+services:
+  livebox:
+    image: ziyan/livebox:latest
+    ports:
+    - "1935:1935"
+    volumes:
+    - "/data:/data"
+    restart: always
+    ulimits:
+      nofile:
+        soft: 1048576
+        hard: 1048576
+    environment:
+    - HLS_LIST_SIZE=5
+    - HLS_TIME=4
+    - SUBSTREAMS=720p 540p 360p 216p
+    - SUBSTREAM_1080p_BITRATE=18328000
+    - SUBSTREAM_1080p_CODECS=avc1.4d401f,mp4a.40.2
+    - SUBSTREAM_1080p_VIDEO_SIZE=1920x1080
+    - SUBSTREAM_1080p_VIDEO_FPS=25
+    - SUBSTREAM_720p_BITRATE=8274000
+    - SUBSTREAM_720p_CODECS=avc1.4d401f,mp4a.40.2
+    - SUBSTREAM_720p_VIDEO_SIZE=1280x720
+    - SUBSTREAM_720p_VIDEO_FPS=25
+    - SUBSTREAM_540p_BITRATE=4754000
+    - SUBSTREAM_540p_CODECS=avc1.4d401f,mp4a.40.2
+    - SUBSTREAM_540p_VIDEO_SIZE=960x540
+    - SUBSTREAM_540p_VIDEO_FPS=25
+    - SUBSTREAM_360p_BITRATE=2242000
+    - SUBSTREAM_360p_CODECS=avc1.4d401f,mp4a.40.2
+    - SUBSTREAM_360p_VIDEO_SIZE=640x360
+    - SUBSTREAM_360p_VIDEO_FPS=25
+    - SUBSTREAM_216p_BITRATE=954000
+    - SUBSTREAM_216p_CODECS=avc1.4d401f,mp4a.40.2
+    - SUBSTREAM_216p_VIDEO_SIZE=384x216
+    - SUBSTREAM_216p_VIDEO_FPS=25
+    - VIDEO_PROFILE=baseline
+    - VIDEO_LEVEL=3.1
+    - AUDIO_SAMPLING_RATE=44100
+    - AUDIO_CHANNELS=2
+    - AUDIO_BITRATE=192k
+
+  nginx:
+    build: ./nginx/
+    ports:
+    - "80:80"
+    - "443:443"
+    volumes:
+    - "/data:/data"
+    restart: always
+    ulimits:
+      nofile:
+        soft: 1048576
+        hard: 1048576
+    environment:
+    - COMET=10.0.0.100
+
