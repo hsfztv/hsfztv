@@ -1,0 +1,27 @@
+{
+  "version": "0.0.1",
+  "name": "hsfztv-comet",
+  "description": "hsfztv-comet",
+  "repository": "ziyan/hsfztv",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "body-parser": "latest",
+    "colors": "latest",
+    "express": "latest",
+    "geoip-lite": "latest",
+    "js-yaml": "latest",
+    "md5": "latest",
+    "morgan": "latest",
+    "request": "latest",
+    "socket.io": "latest",
+    "wechat": "^2.1.0"
+  },
+  "engines": {
+    "node": "latest",
+    "npm": "latest"
+  },
+  "scripts": {
+    "start": "node --nouse-idle-notification --max-old-space-size=8192 entry.js"
+  }
+}

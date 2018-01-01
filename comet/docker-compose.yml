@@ -1,0 +1,23 @@
+version: '2'
+services:
+  nodejs:
+    image: node:slim
+    restart: always
+    environment:
+    - NODE_ENV=production
+    - API_KEY=
+    - UPFLARE_API_KEY=hf
+    - UPFLARE_API_SECRET=
+    ulimits:
+      nofile:
+        soft: 1048576
+        hard: 1048576
+    working_dir: /nodejs
+    command: npm run start
+    ports:
+    - "443:443"
+    - "80:80"
+    volumes:
+    - "./nodejs:/nodejs"
+    - "/data:/data"
+
